@@ -67,8 +67,8 @@ final class SubjectController extends AbstractController
        
          
        $subject = $this->entityManager->getRepository(Subject::class)->find($id);
-      $subject->setName($payload->name);
-       $subject->setCode($payload->code);
+    $subject->setName($payload->name);
+      $subject->setCode($payload->code);
 
       $studentRepo=$this->entityManager->getRepository(Student::class);
       $student=$studentRepo->find($payload->studentId);

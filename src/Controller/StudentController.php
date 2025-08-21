@@ -29,7 +29,7 @@ final class StudentController extends AbstractController
         $student = $this->entityManager->getRepository(Student::class);
        return $this->json($student->findAll());
     }
-     #[Route('/students', name: 'student_delete', methods:['DELETE'])]
+     #[Route('/students/{id}', name: 'student_delete', methods:['DELETE'])]
     public function delete( string $id): JsonResponse
     {
         $student = $this->entityManager->getRepository(Student::class);

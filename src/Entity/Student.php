@@ -5,11 +5,11 @@ namespace App\Entity;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
-//use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Uid\Uuid;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
-//#[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: false, hardDelete: true)]
+#[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: false, hardDelete: true)]
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 
 class Student
