@@ -18,18 +18,20 @@ class Subject
     #[ORM\Column(length: 30)]
     private ?string $name = null;
 
+    #[ORM\Column]
+    private ?int $code = null;
+
     /**
      * @var Collection<int, Student>
      */
     #[ORM\ManyToMany(targetEntity: Student::class)]
     private Collection $student;
-
+    
     #[ORM\Column]
-    private ?int $code = null;
-
+    private ?\DateTimeImmutable $createdAt = null;
     public function __construct()
     {
-        $this->student = new ArrayCollection();
+    $this->student = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -47,6 +49,17 @@ class Subject
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getCode(): ?int
+    {
+        return $this->code;
+    }
+
+    public function setCode(int $code): static
+    {
+        $this->code = $code;
+  return $this;
     }
 
     /**
@@ -71,17 +84,15 @@ class Subject
         $this->student->removeElement($student);
 
         return $this;
-    }
-
-    public function getCode(): ?int
+ }
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        return $this->code;
-    }
-
-    public function setCode(int $code): static
-    {
-        $this->code = $code;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+}
 }

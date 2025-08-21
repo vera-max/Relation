@@ -5,9 +5,13 @@ namespace App\Entity;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+//use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Uid\Uuid;
 
+
+//#[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: false, hardDelete: true)]
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
+
 class Student
 {
     #[ORM\Id]
@@ -33,9 +37,6 @@ class Student
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
-
-    #[ORM\ManyToOne(inversedBy: 'student')]
-    private ?Subject $subject = null;
 
     public function getId(): ?Uuid
     {
@@ -114,15 +115,5 @@ class Student
         return $this;
     }
 
-    public function getSubject(): ?Subject
-    {
-        return $this->subject;
-    }
-
-    public function setSubject(?Subject $subject): static
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
+   
 }

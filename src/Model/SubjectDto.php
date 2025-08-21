@@ -9,10 +9,10 @@ class SubjectDto
         public string $name,
         
         #[Assert\NotBlank]
-        public string $student,
+        public string $studentId,
 
         #[Assert\NotBlank]
-        public string $code
+        public int $code
          
     ){
 

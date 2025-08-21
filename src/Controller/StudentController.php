@@ -33,7 +33,7 @@ final class StudentController extends AbstractController
     public function delete( string $id): JsonResponse
     {
         $student = $this->entityManager->getRepository(Student::class);
-        if ($student){
+        if (!$student){
          return new JsonResponse(['No student with this id was found'], Response::HTTP_NOT_FOUND);
         }
 
@@ -57,11 +57,12 @@ final class StudentController extends AbstractController
         
        return new JsonResponse('Created Successfully' );
     }
-     #[Route('/students{id}', name: 'student_edit', methods:['PUT'])]
+     #[Route('/students/{id}', name: 'student_edit', methods:['PUT'])]
     public function update(string $id, #[MapRequestPayload] StudentDto  $payload): JsonResponse
     {
       
-        $student = $this->entityManager->getRepository(Student::class)->find($id);
+       $student = $this->entityManager->getRepository(Student::class)->find($id);
+       
        $student->setName($payload->name);
        $student->setCourse($payload->course);
        $student->setDepartment($payload->department);
@@ -74,7 +75,7 @@ final class StudentController extends AbstractController
        return new JsonResponse('Updated Successfully' );
 
 }
-#[Route('/students{id}', name: 'student', methods:['GET'])]
+#[Route('/students/{id}', name: 'student', methods:['GET'])]
     public function get( string $id): Response
     {
         $student = $this->entityManager->getRepository(Student::class);
